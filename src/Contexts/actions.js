@@ -1,37 +1,69 @@
 import * as DEFAULT from './data.js';
 import * as types from "./types.js";
 
-export const  setInitialData = (dispatch) => {
+export const setInitialData = (dispatch) => {
   return () => dispatch({ type: types.INITIAL, payload: DEFAULT.data });
+}
+const setPiecesColors = (board) => {
+  for (const letter of DEFAULT.ALPHA_KEYS) {
+    for (let number = 1; number <= 8; number++) {
+      const key = `${letter}${number}`;
+
+      if (board[key].piece) {
+        if (['c1', 'c2', 'f1', 'f2'].includes(key)) {
+          board[key].piece.color = DEFAULT.COLORS.white;
+        }
+      }
+    }
+
+  };
+
+  return board;
 }
 
 export const getBoard = () => {
   const board = DEFAULT.DATA.board;
   let bgColor = DEFAULT.COLORS.bg1;
 
-  DEFAULT.ALPHA_KEYS.forEach((k) => {
-    for (let i = 1; i <= 8;  i++) {
-      const key = `${k}${i}`;
+  console.log("getBoard");
+
+  for (const letter of DEFAULT.ALPHA_KEYS) {
+    for (let number = 1; number <= 8; number++) {
+      const key = `${letter}${number}`;
 
       board[key].color = bgColor;
-      if(bgColor === DEFAULT.COLORS.bg1) {
-        bgColor = DEFAULT.COLORS.bg2; 
+      if (bgColor === DEFAULT.COLORS.bg1) {
+        bgColor = DEFAULT.COLORS.bg2;
       } else bgColor = DEFAULT.COLORS.bg1;
 
-      if (i === 2 || i === 7) board[key].piece = DEFAULT.PIECES.peao;
-      if (['a1', 'a8', 'h1', 'h8'].includes(key)) board[key].piece = DEFAULT.PIECES.torre;
-      if (['b1', 'b8', 'g1', 'g8'].includes(key)) board[key].piece = DEFAULT.PIECES.cavalo;
-      if (['c1', 'c8', 'f1', 'f8'].includes(key)) board[key].piece = DEFAULT.PIECES.bispo;
-      if (['d1', 'd8'].includes(key)) board[key].piece = DEFAULT.PIECES.rainha;
-      if (['e1', 'e8'].includes(key)) board[key].piece = DEFAULT.PIECES.rei;
+      if (number === 2 || number === 7) {
+        board[key].piece = DEFAULT.PIECES.peao;
+      }
+      if (['a1', 'a8', 'h1', 'h8'].includes(key)) {
+        board[key].piece = DEFAULT.PIECES.torre;
+      }
+      if (['b1', 'b8', 'g1', 'g8'].includes(key)) {
+        board[key].piece = DEFAULT.PIECES.cavalo;
+      }
+      if (['c1', 'c8', 'f1', 'f8'].includes(key)) {
+        board[key].piece = DEFAULT.PIECES.bispo;
+      }
+      if (['d1', 'd8'].includes(key)) {
+        board[key].piece = DEFAULT.PIECES.rainha;
+      }
+      if (['e1', 'e8'].includes(key)) {
+        board[key].piece = DEFAULT.PIECES.rei;
+      }
     }
 
-    if(bgColor === DEFAULT.COLORS.bg1) {
-      bgColor = DEFAULT.COLORS.bg2; 
-    } else bgColor = DEFAULT.COLORS.bg1;
-  });
+    console.log({ ...board });
 
-  return board;
+    if (bgColor === DEFAULT.COLORS.bg1) {
+      bgColor = DEFAULT.COLORS.bg2;
+    } else bgColor = DEFAULT.COLORS.bg1;
+  };
+
+  return setPiecesColors(board);
 };
 
 const getConsoleBoard = () => {
@@ -42,7 +74,7 @@ const getConsoleBoard = () => {
 
   keys.forEach((key) => {
     count++;
-    switch(board[key].piece?.id){
+    switch (board[key].piece?.id) {
       case "peao":
         boardConsole += " ♙ ";
         break;
@@ -61,12 +93,12 @@ const getConsoleBoard = () => {
       case "rei":
         boardConsole += " ♔ ";
         break;
-      default: 
+      default:
         boardConsole += " ";
         break;
     }
 
-    if(count === 8){
+    if (count === 8) {
       count = 0;
       boardConsole += "\n";
     }

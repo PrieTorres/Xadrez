@@ -1,5 +1,17 @@
 import { getBoard } from "./actions.js"
 import { calcBispoMoves, calcHorseMoves, calcKingMoves, calcPeaoMoves, calcQueenMoves, calcTowerMoves } from "./moves.js"
+const black_peao =  "/pieces/black_peao.png";
+const black_horse = "/pieces/black_horse.png";
+const black_king =  "/pieces/black_king.png";
+const black_queen = "/pieces/black_queen.png";
+const black_tower = "/pieces/black_tower.png";
+const black_bispo = "/pieces/black_bispo.png";
+const white_peao =  "/pieces/white_peao.png";
+const white_horse = "/pieces/white_horse.png";
+const white_king =  "/pieces/white_king.png";
+const white_queen = "/pieces/white_queen.png";
+const white_tower = "/pieces/white_tower.png";
+const white_bispo = "/pieces/white_bispo.png";
 
 const def = {
   killMove: false,
@@ -28,38 +40,52 @@ export const PIECES = {
   peao: {
     id: "peao",
     move: calcPeaoMoves,
-    icon: "♙"
+    icon: "♙",
+    white_icon: white_peao,
+    black_icon: black_peao,
   },
   torre: {
     id: "torre",
     move: calcTowerMoves,
-    icon: "♖"
+    icon: "♖",
+    white_icon: white_tower,
+    black_icon: black_tower,
   },
   bispo: {
     id: "bispo",
     move: calcBispoMoves,
-    icon: "♗"
+    icon: "♗",
+    white_icon: white_bispo,
+    black_icon: black_bispo,
   },
   cavalo: {
     id: "cavalo",
     move: calcHorseMoves,
-    icon: "♘"
+    icon: "♘",
+    white_icon: white_horse,
+    black_icon: black_horse,
   },
   rei: {
     id: "rei",
     move: calcKingMoves,
-    icon: "♔"
+    icon: "♔",
+    white_icon: white_king,
+    black_icon: black_king,
   },
   rainha: {
     id: "rainha",
     move: calcQueenMoves,
-    icon: "♕"
+    icon: "♕",
+    white_icon: white_queen,
+    black_icon: black_queen,
   }
 }
 
 export const COLORS = {
-    bg1: "#000",
-    bg2: "#eee"
+  bg1: "#000",
+  bg2: "#eee",
+  black: "black",
+  white: "white"
 }
 
 export const ALPHA_KEYS = ["a", "b", "c", "d", "e", "f", "g", "h"];
