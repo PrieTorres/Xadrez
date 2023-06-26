@@ -1,18 +1,19 @@
 import { useReducer } from 'react';
-import { xadrezContext } from './context';
+import { XadrezContext } from './context';
 import { data } from './data';
 import { xadrezReducer } from './reducer';
 import P from 'prop-types';
 
-export const xadrezProvider = ({ children }) => {
-  const [xadrezState, setXadrezState] = useReducer(xadrezReducer, data);
+export const XadrezProvider = ({ children }) => {
+  const [xadrezState, xadrezDispatch] = useReducer(xadrezReducer, data);
+
   return (
-    <xadrezContext.Provider value={{ xadrezState, setXadrezState }}>
+    <XadrezContext.Provider value={{ xadrezState, xadrezDispatch }}>
       {children}
-    </xadrezContext.Provider>
+    </XadrezContext.Provider>
   );
 };
 
-xadrezProvider.propTypes = {
+XadrezProvider.propTypes = {
   children: P.node.isRequired,
 };

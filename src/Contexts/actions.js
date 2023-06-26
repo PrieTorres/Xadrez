@@ -1,4 +1,9 @@
 import * as DEFAULT from './data.js';
+import * as types from "./types.js";
+
+export const  setInitialData = (dispatch) => {
+  return () => dispatch({ type: types.INITIAL, payload: DEFAULT.data });
+}
 
 export const getBoard = () => {
   const board = DEFAULT.DATA.board;
@@ -20,6 +25,10 @@ export const getBoard = () => {
       if (['d1', 'd8'].includes(key)) board[key].piece = DEFAULT.PIECES.rainha;
       if (['e1', 'e8'].includes(key)) board[key].piece = DEFAULT.PIECES.rei;
     }
+
+    if(bgColor === DEFAULT.COLORS.bg1) {
+      bgColor = DEFAULT.COLORS.bg2; 
+    } else bgColor = DEFAULT.COLORS.bg1;
   });
 
   return board;

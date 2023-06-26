@@ -6,11 +6,6 @@ const def = {
   mayMove: false
 }
 
-export const data = {
-  ...DATA,
-  board: getBoard();
-}
-
 export const DATA = {
   board: {
     a8: { ...def }, b8: { ...def }, c8: { ...def }, d8: { ...def }, e8: { ...def }, f8: { ...def }, g8: { ...def }, h8: { ...def },
@@ -32,27 +27,33 @@ export const DATA = {
 export const PIECES = {
   peao: {
     id: "peao",
-    move: calcPeaoMoves
+    move: calcPeaoMoves,
+    icon: "♙"
   },
   torre: {
     id: "torre",
-    move: calcTowerMoves
+    move: calcTowerMoves,
+    icon: "♖"
   },
   bispo: {
     id: "bispo",
-    move: calcBispoMoves
+    move: calcBispoMoves,
+    icon: "♗"
   },
   cavalo: {
     id: "cavalo",
-    move: calcHorseMoves
+    move: calcHorseMoves,
+    icon: "♘"
   },
   rei: {
     id: "rei",
-    move: calcKingMoves
+    move: calcKingMoves,
+    icon: "♔"
   },
   rainha: {
     id: "rainha",
-    move: calcQueenMoves
+    move: calcQueenMoves,
+    icon: "♕"
   }
 }
 
@@ -62,3 +63,8 @@ export const COLORS = {
 }
 
 export const ALPHA_KEYS = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+export const data = {
+  ...DATA,
+  board: getBoard()
+}

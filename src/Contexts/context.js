@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const xadrezContext = createContext({});
+export const XadrezContext = createContext();
