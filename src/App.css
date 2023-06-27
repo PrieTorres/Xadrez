@@ -1,0 +1,15 @@
+#win-game {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000a6;
+    background: url("https://usagif.com/wp-content/uploads/fireworks-7.gif") no-repeat;
+    background-size: cover;
+    font-size: 4rem;
+    text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}

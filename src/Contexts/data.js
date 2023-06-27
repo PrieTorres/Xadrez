@@ -18,6 +18,21 @@ const def = {
   mayMove: false
 }
 
+export const ALPHA_KEYS = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+export const COLORS = {
+  bg1: "#000",
+  bg2: "#eee",
+  mayMove: "#38afda",
+  killMove: "#da3851",
+  black: "black",
+  white: "white"
+}
+
+const getOtherPlayerColor = (playerSide) => {
+  return playerSide == COLORS.white ? COLORS.black : COLORS.white;
+}
+
 export const DATA = {
   board: {
     a8: { ...def }, b8: { ...def }, c8: { ...def }, d8: { ...def }, e8: { ...def }, f8: { ...def }, g8: { ...def }, h8: { ...def },
@@ -36,59 +51,66 @@ export const DATA = {
   }
 }
 
+DATA.otherPlayerSide = getOtherPlayerColor(DATA.playerSide);
+
+export const boardKeys = Object.keys(DATA.board);
+
 export const PIECES = {
   peao: {
     id: "peao",
-    move: calcPeaoMoves,
+    calcMoves: calcPeaoMoves,
+    firstMove: true,
     icon: "♙",
     white_icon: white_peao,
     black_icon: black_peao,
   },
   torre: {
     id: "torre",
-    move: calcTowerMoves,
+    calcMoves: calcTowerMoves,
     icon: "♖",
     white_icon: white_tower,
     black_icon: black_tower,
   },
   bispo: {
     id: "bispo",
-    move: calcBispoMoves,
+    calcMoves: calcBispoMoves,
     icon: "♗",
     white_icon: white_bispo,
     black_icon: black_bispo,
   },
   cavalo: {
     id: "cavalo",
-    move: calcHorseMoves,
+    calcMoves: calcHorseMoves,
     icon: "♘",
     white_icon: white_horse,
     black_icon: black_horse,
   },
   rei: {
     id: "rei",
-    move: calcKingMoves,
+    calcMoves: calcKingMoves,
     icon: "♔",
     white_icon: white_king,
     black_icon: black_king,
   },
   rainha: {
     id: "rainha",
-    move: calcQueenMoves,
+    calcMoves: calcQueenMoves,
     icon: "♕",
     white_icon: white_queen,
     black_icon: black_queen,
   }
 }
 
-export const COLORS = {
-  bg1: "#000",
-  bg2: "#eee",
-  black: "black",
-  white: "white"
-}
+Object.freeze(PIECES);
+Object.freeze(PIECES.peao);
+Object.freeze(PIECES.cavalo);
+Object.freeze(PIECES.torre);
+Object.freeze(PIECES.bispo);
+Object.freeze(PIECES.rainha);
+Object.freeze(PIECES.rei);
+Object.freeze(ALPHA_KEYS);
+Object.freeze(boardKeys);
 
-export const ALPHA_KEYS = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
 export const data = {
   ...DATA,

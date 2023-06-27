@@ -4,15 +4,49 @@ import * as types from "./types.js";
 export const setInitialData = (dispatch) => {
   return () => dispatch({ type: types.INITIAL, payload: DEFAULT.data });
 }
-const setPiecesColors = (board) => {
+
+export const recalcPlayerSide = (_board, playerSideColor) => {
+  const board = { ..._board }
+
+  DEFAULT.boardKeys.forEach((key) => {
+    if (board[key].piece) {
+      board[key].piece.playerSide = board[key].piece.color == playerSideColor;
+    }
+  });
+
+  return board;
+}
+
+export const clearMayMoves = (_board) => {
+  const board = { ..._board }
+  for (const letter of DEFAULT.ALPHA_KEYS) {
+    for (let number = 1; number <= 8; number++) {
+      const key = `${letter}${number}`;
+
+      board[key].mayMove = false;
+      board[key].killMove = false;
+    }
+  };
+
+  return board;
+}
+
+const setPiecesColors = (board, playerSideColor, otherPlayerSideColor) => {
   for (const letter of DEFAULT.ALPHA_KEYS) {
     for (let number = 1; number <= 8; number++) {
       const key = `${letter}${number}`;
 
       if (board[key].piece) {
-        if (['c1', 'c2', 'f1', 'f2'].includes(key)) {
-          board[key].piece.color = DEFAULT.COLORS.white;
+        if (number <= 2) {
+          board[key].piece.color = playerSideColor;
         }
+        if (number >= 7) {
+          board[key].piece.color = otherPlayerSideColor;
+        }
+      }
+
+      if (board[key].piece) {
+        board[key].piece.playerSide = board[key].piece.color == playerSideColor;
       }
     }
 
@@ -25,8 +59,6 @@ export const getBoard = () => {
   const board = DEFAULT.DATA.board;
   let bgColor = DEFAULT.COLORS.bg1;
 
-  console.log("getBoard");
-
   for (const letter of DEFAULT.ALPHA_KEYS) {
     for (let number = 1; number <= 8; number++) {
       const key = `${letter}${number}`;
@@ -37,33 +69,32 @@ export const getBoard = () => {
       } else bgColor = DEFAULT.COLORS.bg1;
 
       if (number === 2 || number === 7) {
-        board[key].piece = DEFAULT.PIECES.peao;
+        board[key].piece = { ...DEFAULT.PIECES.peao };
       }
       if (['a1', 'a8', 'h1', 'h8'].includes(key)) {
-        board[key].piece = DEFAULT.PIECES.torre;
+        board[key].piece = { ...DEFAULT.PIECES.torre };
       }
       if (['b1', 'b8', 'g1', 'g8'].includes(key)) {
-        board[key].piece = DEFAULT.PIECES.cavalo;
+        board[key].piece = { ...DEFAULT.PIECES.cavalo };
       }
       if (['c1', 'c8', 'f1', 'f8'].includes(key)) {
-        board[key].piece = DEFAULT.PIECES.bispo;
+        board[key].piece = { ...DEFAULT.PIECES.bispo };
       }
       if (['d1', 'd8'].includes(key)) {
-        board[key].piece = DEFAULT.PIECES.rainha;
+        board[key].piece = { ...DEFAULT.PIECES.rainha };
       }
       if (['e1', 'e8'].includes(key)) {
-        board[key].piece = DEFAULT.PIECES.rei;
+        board[key].piece = { ...DEFAULT.PIECES.rei };
       }
-    }
 
-    console.log({ ...board });
+    }
 
     if (bgColor === DEFAULT.COLORS.bg1) {
       bgColor = DEFAULT.COLORS.bg2;
     } else bgColor = DEFAULT.COLORS.bg1;
   };
 
-  return setPiecesColors(board);
+  return setPiecesColors(board, DEFAULT.DATA.playerSide, DEFAULT.DATA.otherPlayerSide);
 };
 
 const getConsoleBoard = () => {
