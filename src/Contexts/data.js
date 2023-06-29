@@ -1,17 +1,17 @@
 import { getBoard } from "./actions.js"
 import { calcBispoMoves, calcHorseMoves, calcKingMoves, calcPeaoMoves, calcQueenMoves, calcTowerMoves } from "./moves.js"
-const black_peao =  "/pieces/black_peao.png";
-const black_horse = "/pieces/black_horse.png";
-const black_king =  "/pieces/black_king.png";
-const black_queen = "/pieces/black_queen.png";
-const black_tower = "/pieces/black_tower.png";
-const black_bispo = "/pieces/black_bispo.png";
-const white_peao =  "/pieces/white_peao.png";
-const white_horse = "/pieces/white_horse.png";
-const white_king =  "/pieces/white_king.png";
-const white_queen = "/pieces/white_queen.png";
-const white_tower = "/pieces/white_tower.png";
-const white_bispo = "/pieces/white_bispo.png";
+const black_peao =  "pieces/black_peao.png";
+const black_horse = "pieces/black_horse.png";
+const black_king =  "pieces/black_king.png";
+const black_queen = "pieces/black_queen.png";
+const black_tower = "pieces/black_tower.png";
+const black_bispo = "pieces/black_bispo.png";
+const white_peao =  "pieces/white_peao.png";
+const white_horse = "pieces/white_horse.png";
+const white_king =  "pieces/white_king.png";
+const white_queen = "pieces/white_queen.png";
+const white_tower = "pieces/white_tower.png";
+const white_bispo = "pieces/white_bispo.png";
 
 const def = {
   killMove: false,
