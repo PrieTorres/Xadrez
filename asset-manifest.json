@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Xadrez/static/css/main.58e4950f.css",
-    "main.js": "/Xadrez/static/js/main.dc5c1030.js",
+    "main.js": "/Xadrez/static/js/main.623f649f.js",
     "index.html": "/Xadrez/index.html",
     "main.58e4950f.css.map": "/Xadrez/static/css/main.58e4950f.css.map",
-    "main.dc5c1030.js.map": "/Xadrez/static/js/main.dc5c1030.js.map"
+    "main.623f649f.js.map": "/Xadrez/static/js/main.623f649f.js.map"
   },
   "entrypoints": [
     "static/css/main.58e4950f.css",
-    "static/js/main.dc5c1030.js"
+    "static/js/main.623f649f.js"
   ]
 }
